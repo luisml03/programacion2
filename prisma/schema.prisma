@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Categorias {
+  IDCategoria         Int                   @id @default(autoincrement())
+  Nombre              String                @db.VarChar(100)
+  Descripcion         String?               @map("Descripción") @db.Text
+  ProductosCategorias ProductosCategorias[]
+
+  @@map("Categorías")
+}
+
+model Clientes {
+  IDCliente Int       @id @default(autoincrement())
+  Nombre    String    @db.VarChar(100)
+  Correo    String    @db.VarChar(100)
+  Telefono  String?   @map("Teléfono") @db.VarChar(15)
+  Direccion String?   @map("Dirección") @db.VarChar(255)
+  Ciudad    String?   @db.VarChar(100)
+  Pais      String?   @map("País") @db.VarChar(100)
+  Pedidos   Pedidos[]
+}
+
+model DetallesPedidos {
+  IDDetalle      Int       @id @default(autoincrement())
+  IDPedido       Int
+  IDProducto     Int
+  Cantidad       Int
+  PrecioUnitario Decimal   @db.Decimal(10, 2)
+  Subtotal       Decimal   @db.Decimal(10, 2)
+  Pedidos        Pedidos   @relation(fields: [IDPedido], references: [IDPedido], onDelete: NoAction, onUpdate: NoAction, map: "detallespedidos_ibfk_1")
+  Productos      Productos @relation(fields: [IDProducto], references: [IDProducto], onDelete: NoAction, onUpdate: NoAction, map: "detallespedidos_ibfk_2")
+
+  @@index([IDPedido], map: "IDPedido")
+  @@index([IDProducto], map: "IDProducto")
+}
+
+model Pedidos {
+  IDPedido        Int               @id @default(autoincrement())
+  IDCliente       Int
+  FechaPedido     DateTime          @db.DateTime(0)
+  Estado          String            @db.VarChar(50)
+  Total           Decimal?          @db.Decimal(10, 2)
+  DetallesPedidos DetallesPedidos[]
+  Clientes        Clientes          @relation(fields: [IDCliente], references: [IDCliente], onDelete: NoAction, onUpdate: NoAction, map: "pedidos_ibfk_1")
+
+  @@index([IDCliente], map: "IDCliente")
+}
+
+model Productos {
+  IDProducto          Int                   @id @default(autoincrement())
+  Nombre              String                @db.VarChar(100)
+  Descripci_n         String?               @map("Descripción") @db.Text
+  Precio              Decimal               @db.Decimal(10, 2)
+  Stock               Int
+  DetallesPedidos     DetallesPedidos[]
+  ProductosCategorias ProductosCategorias[]
+}
+
+model ProductosCategorias {
+  IDProducto  Int
+  IDCategoria Int
+  Productos   Productos  @relation(fields: [IDProducto], references: [IDProducto], onDelete: NoAction, onUpdate: NoAction, map: "productoscategorias_ibfk_1")
+  Categor_as  Categorias @relation(fields: [IDCategoria], references: [IDCategoria], onDelete: NoAction, onUpdate: NoAction, map: "productoscategorias_ibfk_2")
+
+  @@id([IDProducto, IDCategoria])
+  @@index([IDCategoria], map: "IDCategoria")
+}
