@@ -2,24 +2,27 @@
 "use client";
 
 import { Badge, Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
+import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiHome } from "react-icons/hi";
 
 export function SidebarComponent() {
   return (
-    <div className="flex">
+    <div className="fixed">
     <Sidebar aria-label="Sidebar with call to action button example">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="/clients" icon={HiUser}>
+        <Sidebar.Item href="/" icon={HiHome} id='Home'>
+            Home
+          </Sidebar.Item>
+          <Sidebar.Item href="clients" icon={HiUser} id='users'>
             Users
           </Sidebar.Item>
-          <Sidebar.Item href="/products" icon={HiShoppingBag}>
+          <Sidebar.Item href="products" icon={HiShoppingBag}>
             Products
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>
             Pedidos
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiTable}>
+          <Sidebar.Item href="categories" icon={HiTable}>
             Categorias
           </Sidebar.Item>
         </Sidebar.ItemGroup>

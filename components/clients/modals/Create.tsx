@@ -39,7 +39,7 @@ export function CreateComponent() {
 
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Crear Usuario</Button>
+      <Button id="createU" onClick={() => setOpenModal(true)}>Crear Usuario</Button>
       <Modal show={openModal} size="md" onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>

@@ -56,7 +56,7 @@ export const ProductTable = ({productos = []}: Props) => {
           <Table.HeadCell>Product Name</Table.HeadCell>
           <Table.HeadCell>Descripcion</Table.HeadCell>
           <Table.HeadCell>Precio</Table.HeadCell>
-          <Table.HeadCell>Stock</Table.HeadCell>
+          <Table.HeadCell className="max-[760px]:hidden">Stock</Table.HeadCell>
           <Table.HeadCell>
             <span className="sr-only">Edit</span>
           </Table.HeadCell>
@@ -76,7 +76,7 @@ export const ProductTable = ({productos = []}: Props) => {
             </Table.Cell>
             <Table.Cell>{producto.Descripci_n}</Table.Cell>
             <Table.Cell>{producto.Precio.toString()}</Table.Cell>
-            <Table.Cell>{producto.Stock}</Table.Cell>
+            <Table.Cell className="max-[760px]:hidden">{producto.Stock}</Table.Cell>
             <Table.Cell>
 		{/*<ModifyComponent id={producto.IDProducto} name={producto.Nombre} correo={producto.Correo} phone={producto.Telefono} address={producto.Direccion} city={producto.Ciudad} country={producto.Pais}/> */}	
             </Table.Cell>
