@@ -2,6 +2,7 @@
 "use client";
 
 import { Badge, Sidebar } from "flowbite-react";
+import { SignOut } from "../authComponents/sign-out";
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiHome } from "react-icons/hi";
 
 export function SidebarComponent() {
@@ -61,6 +62,7 @@ export function SidebarComponent() {
           Turn new navigation off
         </a>
       </Sidebar.CTA>
+      <SignOut/>
     </Sidebar>
     </div>
   );

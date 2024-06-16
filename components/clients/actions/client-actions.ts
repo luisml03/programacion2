@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export const createClient = async( Nombre: string, Correo: string, Telefono: string, Direccion: string, Ciudad: string, Pais: string ) => {
     const client = await prisma.clientes.create({ data: { Nombre, Correo, Telefono, Direccion, Ciudad, Pais } });
-    revalidatePath('/clients');
+    revalidatePath('/dashboard/clients');
     return client;
   }
 

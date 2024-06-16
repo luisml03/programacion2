@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
+import { SignIn } from "../authComponents/sign-in";
 
 export function NavbarComponent() {
   return (
@@ -19,6 +20,7 @@ export function NavbarComponent() {
         </NavbarLink>
         <NavbarLink href="/dashboard/clients" className="text-white">Services</NavbarLink>
         <NavbarLink href="#" className="text-white">Contact</NavbarLink>
+        <SignIn/>
       </NavbarCollapse>
     </Navbar>
   );

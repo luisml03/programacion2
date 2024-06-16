@@ -4,6 +4,7 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import {  useState } from "react";
 import { createClient } from "../actions/client-actions";
+import { useRouter } from "next/navigation";
 
 export function CreateComponent() {
   const [openModal, setOpenModal] = useState(false);
@@ -13,6 +14,7 @@ export function CreateComponent() {
   const [direccion, setDireccion] = useState('');
   const [ciudad, setCiudad] = useState('');
   const [pais, setPais] = useState('');
+  const router = useRouter();
 
   function onCloseModal() {
     setOpenModal(false);
@@ -30,6 +32,7 @@ export function CreateComponent() {
     await createClient(nombre, email, telefono, direccion, ciudad, pais);
     alert('Cliente ha sido creado')
     onCloseModal();
+    router.refresh();
     } catch (error) {
         console.error('problemas en el proceso');
         alert('No se pudeo crear el cliente');
